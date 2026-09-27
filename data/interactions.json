@@ -1,0 +1,89 @@
+[
+  {
+    "id": "195615be-d070-4a84-92b4-60cc358ef00f",
+    "timestamp": "2026-09-27T10:17:10.660Z",
+    "profileVersionAtResponse": 1,
+    "systemPromptUsed": "(seed data)",
+    "llmModel": "seed",
+    "mocked": true,
+    "consumedByLearning": true,
+    "profileId": "naija-marketplace",
+    "message": "Abeg, I need to know if this phone dey available.",
+    "response": "Yes, the phone is currently available in our inventory. Would you like to proceed with placing an order at this time?",
+    "feedback": {
+      "verdict": "bad",
+      "note": "Too stiff and corporate for how the customer is talking to us.",
+      "preferredResponse": "Yes, e dey available. You wan order am?",
+      "submittedAt": "2026-09-27T10:17:10.659Z"
+    }
+  },
+  {
+    "id": "c0f3b384-4668-4487-ad2d-2ccc99994aaf",
+    "timestamp": "2026-09-27T10:17:10.660Z",
+    "profileVersionAtResponse": 1,
+    "systemPromptUsed": "(seed data)",
+    "llmModel": "seed",
+    "mocked": true,
+    "consumedByLearning": true,
+    "profileId": "naija-marketplace",
+    "message": "How much for the bag, and una deliver to Ikeja?",
+    "response": "The bag is priced at ₦15,000. We do offer delivery services; however, delivery availability to your specified location would need to be confirmed separately.",
+    "feedback": {
+      "verdict": "bad",
+      "note": "Way too long for a simple price + delivery question.",
+      "preferredResponse": "It's ₦15,000. Yes o, we deliver to Ikeja.",
+      "submittedAt": "2026-09-27T10:17:10.660Z"
+    }
+  },
+  {
+    "id": "51ff739c-f4c9-4d6c-bf3c-520eed5221a2",
+    "timestamp": "2026-09-27T10:17:10.660Z",
+    "profileVersionAtResponse": 1,
+    "systemPromptUsed": "(seed data)",
+    "llmModel": "seed",
+    "mocked": true,
+    "consumedByLearning": true,
+    "profileId": "naija-marketplace",
+    "message": "Can I pay on delivery?",
+    "response": "Yes, that works. We'll confirm the address before your order goes out.",
+    "feedback": {
+      "verdict": "good",
+      "submittedAt": "2026-09-27T10:17:10.660Z"
+    }
+  },
+  {
+    "id": "3ada7672-02fe-45c8-bab2-fe7d55f18044",
+    "timestamp": "2026-09-27T10:17:10.660Z",
+    "profileVersionAtResponse": 1,
+    "systemPromptUsed": "(seed data)",
+    "llmModel": "seed",
+    "mocked": true,
+    "consumedByLearning": true,
+    "profileId": "naija-marketplace",
+    "message": "This laptop, na original or fairly used?",
+    "response": "We would like to inform you that all our laptop products undergo a thorough quality assurance process prior to listing, and this particular unit is classified as a fairly used device in good working condition.",
+    "feedback": {
+      "verdict": "bad",
+      "note": "Nobody talks like this over chat, way too formal.",
+      "preferredResponse": "It's fairly used, but tested and working fine.",
+      "submittedAt": "2026-09-27T10:17:10.660Z"
+    }
+  },
+  {
+    "id": "68fb7f5e-8f06-4290-9694-090c36d96a89",
+    "timestamp": "2026-09-27T10:17:10.660Z",
+    "profileVersionAtResponse": 1,
+    "systemPromptUsed": "(seed data)",
+    "llmModel": "seed",
+    "mocked": true,
+    "consumedByLearning": true,
+    "profileId": "naija-marketplace",
+    "message": "Do you have this in black?",
+    "response": "Yes, black is available. You want me hold one for you?",
+    "feedback": {
+      "verdict": "good",
+      "note": "This tone is exactly right.",
+      "submittedAt": "2026-09-27T10:17:10.660Z"
+    }
+  }
+]

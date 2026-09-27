@@ -1,0 +1,129 @@
+# Sitch — Hackathon Submission
+
+Fill in the bracketed fields before submitting via the Google Form. Keep the
+rest — it matches what's actually in this repo.
+
+- **Team name:** [TODO]
+- **Team lead (name + email):** [TODO — one lead email is used across all forms]
+- **Team members:** [TODO]
+- **Country (for country-podium prize eligibility):** [TODO]
+
+## Title
+
+Sitch — Self-Improvement Communication Harness
+
+## Summary (≤150 words)
+
+Sitch is a communication layer that sits between an application and an
+LLM. Instead of answering the user directly, it decides *how* the LLM
+should say it — tone, formality, directness, length, local phrasing — based
+on a learned profile of that specific audience. When a response misses the
+mark, feedback (a thumbs-down, a note, or the reply it should have given)
+is logged. An agentic learning loop periodically reviews that feedback,
+detects concrete communication patterns, and proposes an updated
+communication profile, which a human approves before it takes effect. The
+same underlying LLM then talks noticeably differently to the same
+audience — shorter, warmer, more direct, using their own phrasing — without
+anyone hand-editing a prompt. The prototype ships a working harness, a
+playground that shows the before/after contrast live, a developer API
+(`POST /api/sitch/respond`), and a full feedback → analysis → proposal →
+approval → new profile loop, with a reliability fallback if the LLM
+analyst is unreachable.
+
+## Problem
+
+Different audiences expect to communicate differently — a customer
+messaging a small seller in Naija Pidgin does not want the same register
+as a compliance email — and those expectations change over time and by
+context. Hand-writing a communication prompt per audience doesn't scale
+and goes stale. Most AI products ship one fixed tone and hope it fits
+everyone.
+
+## Solution
+
+A drop-in harness that generates the system-level communication guidance
+for an LLM call from a per-audience "communication profile," plus an
+agent that updates that profile from real interaction feedback — so the
+tone improves the more the audience is actually served, without a
+developer rewriting prompts.
+
+## Features
+
+- Communication harness (`/api/sitch/respond`) — audience-aware, drop-in
+  replacement for calling an LLM directly.
+- Communication Learning Agent — LLM-driven pattern detection over
+  feedback, with confidence levels and cited evidence per pattern.
+- Self-improvement loop — feedback → proposal → human approval → new
+  profile version, with full history retained.
+- Playground — live before/after comparison (generic LLM vs
+  Sitch-guided), profile inspector, and a visible "Learning Activity"
+  pipeline.
+- Reliability fallback — heuristic pattern detection when the LLM
+  analyst is unavailable, and mock-mode responses when no API key is
+  configured, so the loop never just breaks.
+- Seed data demonstrating one audience profile mid-learning-history
+  (`naija-marketplace`) and one cold-start profile (`default`) for an
+  instant before/after without waiting on a live call.
+
+## Technologies
+
+Next.js 16 (App Router, TypeScript) for both the playground UI and the
+API routes; Tailwind CSS v4 for styling; Groq (`llama-3.3-70b-versatile`,
+falling back to `llama-3.1-8b-instant`) as the LLM provider for both the
+task-facing responses and the communication-learning agent; JSON-file
+persistence (`data/profiles.json`, `data/interactions.json`) for the
+communication profiles and interaction/feedback log.
+
+## Next steps
+
+- Multi-tenant storage (real database instead of JSON files) so this can
+  run per-business rather than per-deployment.
+- Let a business onboard its own audience profile from a handful of real
+  transcripts instead of starting from the two seeded profiles.
+- Automatic (scheduled or threshold-triggered) learning cycles instead of
+  a manual "run learning cycle" action, once proposal quality has been
+  validated on more real traffic.
+- Broaden beyond English/Pidgin-style informal register to more languages
+  and mixing patterns — the mechanism is language-agnostic, the seed data
+  isn't.
+
+## AI / tool disclosure
+
+- **Models used:** Groq-hosted `llama-3.3-70b-versatile` (primary) and
+  `llama-3.1-8b-instant` (automatic fallback on error/rate limit) — used
+  both to generate the audience-facing response and to run the
+  communication-learning agent's pattern analysis. No other model
+  providers are used at runtime.
+- **APIs:** Groq Chat Completions API (OpenAI-compatible), called
+  directly via `fetch` from `lib/sitch/llmClient.ts` — no SDK dependency.
+- **Datasets / generated assets:** No external dataset. The
+  `naija-marketplace` seed profile and its 5 example interactions
+  (`scripts/seed.ts`) are hand-written illustrative examples, not
+  scraped or sourced from real users — labeled as such in the README.
+  The Sitch logo mark is an inline SVG authored for this project
+  (`components/icons.tsx`), not generated by an image model.
+- **Access constraints:** No NVIDIA Brev credits were requested or used
+  for this project — it runs on Groq's free tier via a standard API key,
+  no GPU provisioning needed.
+- **Fallback approach:** if the Groq API is unreachable or rate-limited,
+  the harness retries once on a smaller model, then serves a clearly
+  labeled mock response (`[Sitch mock mode…]`) rather than erroring; the
+  learning agent falls back to a heuristic pattern detector under the
+  same conditions, tagged `usedFallbackHeuristic: true` in its output.
+- **Honesty note:** the `naija-marketplace` profile's starting learned
+  patterns are seeded (see above) so the "after Sitch" demo state exists
+  even without a live network call — this is disclosed in the README and
+  in this document, not presented as live-learned unless a learning cycle
+  is actually run during the demo.
+
+## Links
+
+- **Source code:** [TODO — GitHub URL]
+- **Demo video (≤90s):** [TODO]
+- **Slides:** [TODO]
+- **Live demo (optional):** [TODO]
+
+## Prize selections
+
+[TODO — pick which prizes you're applying for and add one sentence of
+evidence per prize, per the submission form's requirement.]
